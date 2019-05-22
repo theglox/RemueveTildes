@@ -1,13 +1,5 @@
-
-#!/bin/bash
-@echo off 
-FOR f in *; DO 
-mv $f `echo $f |tr 'áéíóúÁÉÍÓÚ' 'aeiouAEIOU '`
-rename á a *
-rename é e *
-rename í i *
-rename ó o *
-rename ú u *
-rename ¤ n *
+find /home/Archivos/ -type f -mmin +1 -print0 | while IFS= read -r -d '' -r f
+do
+  renombrado=$(echo "$f" |   sed  'y/áÁàÀãÃâÂéÉêÊíÍóÓõÕôÔúÚñÑçÇªº/aAaAaAaAeEeEiIoOoOoOuUnNcCao/')
+  test  "$f" != "$renombrado" &&  (echo "Corrigiendo $f" ; mv "$f" "$renombrado")
 done
-exit
