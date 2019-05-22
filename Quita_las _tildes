@@ -1,0 +1,13 @@
+
+#!/bin/bash
+@echo off 
+FOR f in *; DO 
+mv $f `echo $f |tr 'áéíóúÁÉÍÓÚ' 'aeiouAEIOU '`
+rename á a *
+rename é e *
+rename í i *
+rename ó o *
+rename ú u *
+rename ¤ n *
+done
+exit
